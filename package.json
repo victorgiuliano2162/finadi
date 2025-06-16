@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "finadi/node_modules/.bin/ng",
     "start": "finadi/node_modules/.bin/ng serve",
-    "build": "finadi/node_modules/.bin/ng build",
+    "build": "finadi/node_modules/.bin/ng build --watch",
     "watch": "finadi/node_modules/.bin/ng build --watch --configuration development",
     "test": "finadi/node_modules/.bin/ng test"
   },
