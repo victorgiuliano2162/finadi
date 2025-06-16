@@ -1,0 +1,14 @@
+<div>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Finadi</span>
+    <button matButton="filled" routerLink="/" mat-button> <mat-icon>home</mat-icon>Home</button>
+
+
+    <button matButton="filled" routerLink="login" mat-button> <mat-icon>account_circle</mat-icon>Login</button>
+    <button mat-button="filled" routerLink="/" style="margin-left: auto;">Logout <mat-icon>logout</mat-icon></button>
+  </mat-toolbar>
+  <app-sidenav></app-sidenav>
+</div>
