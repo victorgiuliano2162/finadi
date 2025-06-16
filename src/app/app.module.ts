@@ -8,6 +8,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import {MaterialModule} from "./material.module";
+import {FormsModule} from "@angular/forms";
+import {LoginService} from "./service/login.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { LoginPageComponent } from './components/login-page/login-page.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
