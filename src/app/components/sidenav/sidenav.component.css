@@ -1,0 +1,10 @@
+.custom-nav-list {
+  /*background-color: #3f51b5; /* Exemplo: Usando a cor primary do Material */
+  /* background-color: #424242;  /* Exemplo: Um cinza escuro */
+  background-color: #d4c6c64b;  /* Exemplo: Um cinza claro */
+  padding-top: 0; /* Remove padding padrão se necessário */
+}
+
+mat-drawer-container {
+  min-width: 300px;
+}
