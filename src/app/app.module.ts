@@ -10,7 +10,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import {MaterialModule} from "./material.module";
 import {FormsModule} from "@angular/forms";
-import {LoginService} from "./service/login.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import {LoginService} from "./service/login.service";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
