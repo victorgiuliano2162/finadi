@@ -9,8 +9,6 @@ public class FrontendController implements ErrorController {
 
   @RequestMapping("/error")
   public String handleError() {
-    // Redireciona para o index.html (Angular cuidará do roteamento)
-    System.out.println("Chamou o handleError");
     return "forward:/index.html";
   }
 }
