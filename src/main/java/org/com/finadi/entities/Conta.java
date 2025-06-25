@@ -1,7 +1,9 @@
 package org.com.finadi.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import org.com.finadi.services.UsuarioService;
 
 import java.time.LocalDateTime;
@@ -21,18 +23,19 @@ public class Conta {
   @Getter
   private LocalDateTime dataCriacao;
 
-  @ManyToOne @JoinColumn(nullable = false) @Getter
+  @ManyToOne(fetch = FetchType.LAZY) // Usar LAZY é uma boa prática para performance
+  @JoinColumn(name = "usuario_id", nullable = false)
+  @Getter @Setter
+  @JsonBackReference
   private Usuario usuario;
 
   public Conta() {}
 
-  public Conta(double saldo, LocalDateTime dataCriacao, Usuario usuario) {
+  public Conta(double saldo, Usuario usuario) {
     this.saldo = saldo;
-    this.dataCriacao = dataCriacao;
+    this.dataCriacao = LocalDateTime.now();
     this.usuario = usuario;
-    UsuarioService usuarioService = new UsuarioService();
     usuario.adicionarConta(this);
-    usuarioService.updateUser(usuario);
 
   }
 
