@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.com.finadi.services.UsuarioService;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 
@@ -18,7 +19,7 @@ public class Conta {
   private String id;
 
   @Getter
-  private Double saldo;
+  private BigDecimal saldo =  BigDecimal.ZERO;
 
   @Getter
   private LocalDateTime dataCriacao;
@@ -31,27 +32,26 @@ public class Conta {
 
   public Conta() {}
 
-  public Conta(double saldo, Usuario usuario) {
+  public Conta(BigDecimal saldo, Usuario usuario, LocalDateTime dataCriacao) {
     this.saldo = saldo;
-    this.dataCriacao = LocalDateTime.now();
+    this.dataCriacao = dataCriacao;
     this.usuario = usuario;
     usuario.adicionarConta(this);
-
   }
 
-  private void setSaldo(Double saldo) {
-    this.saldo = saldo;
+  public void setSaldo(BigDecimal saldo) {
+    this.saldo = this.saldo.add(saldo);
   }
 
-  public void depositar(double valor) {
-    this.saldo += valor;
+  public void depositar(BigDecimal valor) {
+    saldo.add(valor);
   }
 
-  public void sacar(double valor) throws Exception {
-    if (valor > this.saldo) {
+  public void sacar(BigDecimal valor) throws Exception {
+    if (saldo.compareTo(valor) < 0) {
       throw new Exception("O saldo não pode ser maior que o valor");
     } else {
-    this.saldo -= valor;
+    this.saldo = this.saldo.subtract(valor);
     }
   }
 
