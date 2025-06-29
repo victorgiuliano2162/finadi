@@ -14,5 +14,8 @@ public interface ContaRepository extends JpaRepository<Conta, String> {
   Optional<Conta> findByUsuarioId(String usuarioId);
   Optional<List<Conta>> findContasByUsuarioId(String usuarioId);
 
+  void deleteContaByUsuarioId(String usuarioId);
+  void deleteContaById(String id);
+
 
 }
