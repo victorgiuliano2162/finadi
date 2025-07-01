@@ -8,7 +8,7 @@ import org.com.finadi.repositories.MovimentacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,21 +17,28 @@ public class MovimentacaoService {
 
   @Autowired
   MovimentacaoRepository movimentacaoRepository;
-
-  public void deleteByTipoMovimentacao(TipoMovimentacao tipoMovimentacao) {
-    movimentacaoRepository.deleteByTipoMovimentacao(tipoMovimentacao);
+  @Autowired
+  ContaService contaService;
+  /*
+  //PERIGOSÍSSIMO deleta TODAS as movimentações marcadas com um tipo específico
+  public void deleteByTipoMovimentacao(Movimentacao movimentacao) {
+    movimentacaoRepository.deleteByTipoMovimentacao(movimentacao.getTipoMovimentacao());
   }
+   */
 
-  public List<Movimentacao> findByTipoMovimentacaoAndConta(TipoMovimentacao tipoMovimentacao, Conta conta) {
-    return movimentacaoRepository.findByTipoMovimentacaoAndConta(tipoMovimentacao, conta);
+  public List<Movimentacao> findByTipoMovimentacaoAndConta(Movimentacao movimentacao, Conta conta) {
+    Conta contaConsulta = contaService.getContaById(conta.getId());
+    return movimentacaoRepository.findByTipoMovimentacaoAndConta(movimentacao.getTipoMovimentacao(), contaConsulta);
   }
 
   public List<Movimentacao> findByDataAndConta(LocalDateTime data, Conta conta) {
-    return movimentacaoRepository.findByDataAndConta(data, conta);
+    Conta contaConsulta = contaService.getContaById(conta.getId());
+    return movimentacaoRepository.findByDataAndConta(data, contaConsulta);
   }
 
   public List<Movimentacao> findByCategoriaAndConta(Categoria categoria, Conta conta) {
-    return movimentacaoRepository.findByCategoriaAndConta(categoria, conta);
+    Conta contaConsulta = contaService.getContaById(conta.getId());
+    return movimentacaoRepository.findByCategoriaAndConta(categoria, contaConsulta);
   }
 
 
@@ -52,7 +59,7 @@ public class MovimentacaoService {
   }
 
   public List<Movimentacao> buscarPorDataTipoEConta(LocalDateTime data, TipoMovimentacao tipo, Conta conta) {
-    return movimentacaoRepository.findbyDataAndTipoMovimentacaoAndConta(data, tipo, conta);
+    return movimentacaoRepository.findByDataAndTipoMovimentacaoAndConta(data, tipo, conta);
   }
 
   public List<Movimentacao> buscarPorTudo(LocalDateTime data, TipoMovimentacao tipo, Categoria categoria, Conta conta) {
@@ -62,4 +69,21 @@ public class MovimentacaoService {
   public void deletarPorTipo(TipoMovimentacao tipo) {
     movimentacaoRepository.deleteByTipoMovimentacao(tipo);
   }
+
+
+  public Movimentacao registrarMovimentacao(Movimentacao movimentacao) throws Exception {
+    Conta conta = movimentacao.getConta();
+    BigDecimal valor = movimentacao.getValor();
+
+    if (movimentacao.getTipoMovimentacao() == TipoMovimentacao.CREDITO) {
+      conta.depositar(valor);
+    } else if (movimentacao.getTipoMovimentacao() == TipoMovimentacao.DEBITO) {
+      conta.sacar(valor);
+    }
+
+    contaService.salvarConta(conta); // Atualiza o saldo
+    return movimentacaoRepository.save(movimentacao); // Salva a movimentação
+  }
+
+
 }
