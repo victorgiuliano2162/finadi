@@ -21,10 +21,10 @@ public interface MovimentacaoRepository extends JpaRepository<Movimentacao, Stri
   List<Movimentacao> findByCategoriaAndConta(Categoria categoria, Conta conta);
 
   List<Movimentacao> findByDataAndCategoriaAndConta(LocalDateTime data, Categoria categoria, Conta conta);
-  List<Movimentacao> findbyDataAndTipoMovimentacaoAndConta(LocalDateTime data, TipoMovimentacao tipoMovimentacao,
+  List<Movimentacao> findByDataAndTipoMovimentacaoAndConta(LocalDateTime data, TipoMovimentacao tipoMovimentacao,
                                                            Conta conta);
 
   List<Movimentacao> findByDataAndTipoMovimentacaoAndCategoriaAndConta(LocalDateTime data, TipoMovimentacao tipoMovimentacao, Categoria categoria, Conta conta);
 
-  void deleteByTipoMovimentacao(TipoMovimentacao tipoMovimentacao);
+  void deleteByTipoMovimentacao(TipoMovimentacao tipo);
 }
