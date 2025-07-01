@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.com.finadi.services.UsuarioService;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
