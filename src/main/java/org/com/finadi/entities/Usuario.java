@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.com.finadi.exception.ParameterinvalidException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class Usuario {
+
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
