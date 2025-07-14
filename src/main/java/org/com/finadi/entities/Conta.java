@@ -43,7 +43,7 @@ public class Conta {
   }
 
   public void depositar(BigDecimal valor) {
-    saldo.add(valor);
+    this.setSaldo(valor);
   }
 
   public void sacar(BigDecimal valor) throws Exception {
