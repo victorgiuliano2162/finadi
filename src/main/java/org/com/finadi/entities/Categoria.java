@@ -32,11 +32,15 @@ public class Categoria {
   private List<Movimentacao> movimentacoes = new ArrayList<>();
 
   public Categoria(String nome,  Usuario usuario) {
-    this.nome = nome;
+    this.nome = capitalizarPrimeiraLetra(nome);
     this.usuario = usuario;
   }
 
   public void adicionarMovimentacao(Movimentacao movimentacao) {
     this.movimentacoes.add(movimentacao);
+  }
+
+  public static String capitalizarPrimeiraLetra(String texto) {
+    return texto.substring(0, 1).toUpperCase() + texto.substring(1);
   }
 }
