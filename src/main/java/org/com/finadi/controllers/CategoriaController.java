@@ -51,10 +51,11 @@ public class CategoriaController {
 
   }
 
-  @PostMapping("/{userID}/category")
-  public ResponseEntity<Categoria> salvarCategoria(@PathVariable String userID, @RequestBody Categoria categoria) {
+  @PostMapping("/{userID}/")
+  public ResponseEntity<Categoria> salvarCategoria(@PathVariable String userID, @RequestParam String category) {
+    //http://localhost:8080/api/user/def80f8b-f252-4881-9fbf-d252673a3894/?category=pensão
     Usuario usuario = usuarioService.findUserById(userID);
-    Categoria categoriaNew = new Categoria(categoria.getNome(), usuario);
+    Categoria categoriaNew = new Categoria(category, usuario);
     categoriaNew = categoriaService.salvarCategoria(categoriaNew);
     return ResponseEntity.ok(categoriaNew);
   }
