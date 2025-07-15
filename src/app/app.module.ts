@@ -11,6 +11,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import {MaterialModule} from "./material.module";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { RegisterComponent } from './components/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import {HttpClientModule} from "@angular/common/http";
     FooterComponent,
     ToolBarComponent,
     SidenavComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,7 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
