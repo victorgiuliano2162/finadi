@@ -35,8 +35,6 @@ export class SidenavComponent {
   toggleDrawer() {
     if (this.drawer) {
       this.drawer.toggle();
-    } else {
-      console.error('MatSidenav not found. Make sure #snav is set correctly in the template.');
     }
   }
 
