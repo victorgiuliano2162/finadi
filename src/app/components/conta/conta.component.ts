@@ -5,6 +5,9 @@ import { ChartData, ChartOptions } from 'chart.js';
 import { Conta } from 'src/app/models/conta.model';
 import { CategoriaDialogComponent } from '../categoria-dialog/categoria-dialog.component';
 import { MovimentacaoDialogComponent } from '../movimentacao-dialog/movimentacao-dialog.component';
+import { AuthService } from 'src/app/service/shared/auth.service';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-conta',
@@ -13,8 +16,10 @@ import { MovimentacaoDialogComponent } from '../movimentacao-dialog/movimentacao
 })
 export class ContaComponent {
   conta!: Conta;
-
-  constructor(private route: ActivatedRoute, private dialog: MatDialog) {}
+  currentUser$: Observable<User | null>;
+  constructor(private route: ActivatedRoute, private dialog: MatDialog, private authService: AuthService) {
+    this.currentUser$ = this.authService.currentUser$;
+  }
 
   ngOnInit(): void {
     // Os dados resolvidos estão disponíveis em 'this.route.snapshot.data'

@@ -1,5 +1,6 @@
-<mat-card style="max-width: 800px; margin: auto;">
-  <mat-card-title>Visualização de Movimentações</mat-card-title>
+<div *ngIf="currentUser$ | async as user;">
+  <mat-card style="max-width: 800px; margin: auto;">
+    <mat-card-title>Visualização de Movimentações</mat-card-title>
   <mat-card-subtitle>Na conta {{conta.name}}</mat-card-subtitle>
   <mat-card-subtitle>banco {{conta.banco}}</mat-card-subtitle>
   <mat-card-content>
@@ -40,3 +41,4 @@
 
   </mat-card-content>
 </mat-card>
+</div>
