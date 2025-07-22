@@ -1,0 +1,42 @@
+<mat-card style="max-width: 800px; margin: auto;">
+  <mat-card-title>Visualização de Movimentações</mat-card-title>
+  <mat-card-subtitle>Na conta {{conta.name}}</mat-card-subtitle>
+  <mat-card-subtitle>banco {{conta.banco}}</mat-card-subtitle>
+  <mat-card-content>
+<mat-card-actions style="display: flex; justify-content: flex-end; gap: 1rem;">
+  <button mat-raised-button color="primary" (click)="abrirDialogCategoria()">
+    Nova Categoria
+  </button>
+
+  <button mat-raised-button color="accent" (click)="abrirDialogTransacao()">
+    Nova Transação
+  </button>
+</mat-card-actions>
+
+
+    <mat-tab-group style="margin-top: 5%;">
+      <mat-tab label="Resumo">
+        <div style="padding: 1rem;">
+          <canvas baseChart
+                  [data]="graficoResumoData"
+                  [options]="graficoResumoOptions"
+                  [type]="'doughnut'"
+                  style="max-height: 300px; display: block;">
+          </canvas>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Histórico">
+        <div style="padding: 1rem;">
+          <canvas baseChart
+                  [data]="graficoHistoricoData"
+                  [options]="graficoHistoricoOptions"
+                  [type]="'line'"
+                  style="max-height: 300px; display: block;">
+          </canvas>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+  </mat-card-content>
+</mat-card>
