@@ -1,0 +1,25 @@
+
+
+.card-container {
+  display: flex; /* Usa Flexbox para alinhar os itens */
+  flex-wrap: wrap; /* Permite que os cards quebrem para a próxima linha */
+  gap: 20px; /* Adiciona um espaço entre os cards */
+  justify-content: center; /* Centraliza os cards no container */
+  padding: 20px; /* Define uma largura máxima para o container */
+}
+
+.card {
+  width: 450px; 
+  flex-grow: 1; 
+  max-width: 100%;
+  margin: auto auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.conta {
+  width: 350px; 
+  flex-grow: 1; 
+  max-width: 100%;
+  margin: auto auto;
+}
