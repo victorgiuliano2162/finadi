@@ -12,10 +12,10 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-  @ExceptionHandler(UserNotFoundException.class)
-  public ResponseEntity<String> handleNotFoundException(UserNotFoundException ex) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-  }
+//  @ExceptionHandler(UserNotFoundException.class)
+//  public ResponseEntity<String> handleNotFoundException(UserNotFoundException ex) {
+//    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+//  }
 
   @ExceptionHandler(ResourceNotFoundException.class)
   public ResponseEntity<Map<String, String>> handleNotFound(ResourceNotFoundException ex) {
@@ -29,6 +29,13 @@ public class GlobalExceptionHandler {
     Map<String, String> erro = new HashMap<>();
     erro.put("erro", ex.getMessage());
     return ResponseEntity.status(HttpStatus.FORBIDDEN).body(erro);
+  }
+
+  @ExceptionHandler
+  public ResponseEntity<Map<String, String>> handleException(ParameterinvalidException ex) {
+    Map<String, String> erro = new HashMap<>();
+    erro.put("erro", ex.getMessage());
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(erro);
   }
 
 }
