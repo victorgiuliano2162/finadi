@@ -1,6 +1,8 @@
 
 <mat-drawer-container autosize>
-  
+<span *ngIf="currentUser$ | async as user">
+  Olá, {{ user.name }}
+    </span>  
     <button (click)="logout()">Sair</button>
     <mat-drawer #drawer opened="true" mode="side" position="start" [opened]="false" >
       <mat-nav-list class="exemple-button-row custom-nav-list">
