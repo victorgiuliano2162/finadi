@@ -4,11 +4,15 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span>Finadi</span>
-    <button matButton="filled" routerLink="/" mat-button> <mat-icon>home</mat-icon>Home</button>
+    <ng-template #notLoggedIn>
+      <button matButton="filled" routerLink="login" mat-button> <mat-icon>account_circle</mat-icon>Login</button>
+    </ng-template>
+    <button matButton="filled" routerLink="dashboard" mat-button> <mat-icon>home</mat-icon>Home</button>
 
-
-    <button matButton="filled" routerLink="login" mat-button> <mat-icon>account_circle</mat-icon>Login</button>
-    <button mat-button="filled" routerLink="/" style="margin-left: auto;">Logout <mat-icon>logout</mat-icon></button>
+    <span *ngIf="currentUser$ | async as user; else notLoggedIn">
+    </span>
+    
+    <button mat-button="filled" routerLink="/" (click)="logout()" style="margin-left: auto;">Logout <mat-icon>logout</mat-icon></button>
   </mat-toolbar>
   <app-sidenav></app-sidenav>
 </div>
