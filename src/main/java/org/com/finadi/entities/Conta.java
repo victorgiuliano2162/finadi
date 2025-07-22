@@ -20,6 +20,9 @@ public class Conta {
   @Getter @Setter
   private String name;
 
+  @Getter @Setter
+  private String banco;
+
   @Getter
   private BigDecimal saldo =  BigDecimal.ZERO;
 
@@ -34,8 +37,9 @@ public class Conta {
 
   public Conta() {}
 
-  public Conta(String name, BigDecimal saldo, Usuario usuario, LocalDateTime dataCriacao) {
+  public Conta(String name, String banco, BigDecimal saldo, Usuario usuario, LocalDateTime dataCriacao) {
     this.name = name;
+    this.banco = banco;
     this.saldo = saldo;
     this.dataCriacao = dataCriacao;
     this.usuario = usuario;
