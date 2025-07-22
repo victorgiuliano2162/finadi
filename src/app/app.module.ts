@@ -16,7 +16,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideNgxMask } from 'ngx-mask';
 import { OnlyNumbersDirective } from './directive/only-numbers.directive';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ContaComponent } from './components/conta/conta.component';
+import { NgChartsModule  } from 'ng2-charts';
+import { CategoriaDialogComponent } from './components/categoria-dialog/categoria-dialog.component';
+import { MovimentacaoDialogComponent } from './components/movimentacao-dialog/movimentacao-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LoginPageComponent,
     RegisterComponent,
     OnlyNumbersDirective,
-    DashboardComponent
+    DashboardComponent,
+    ContaComponent,
+    CategoriaDialogComponent,
+    MovimentacaoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +44,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    NgChartsModule
   ],
   providers: [
-    provideNgxMask()
+    provideNgxMask(),
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
   ],
   bootstrap: [AppComponent]
 })
