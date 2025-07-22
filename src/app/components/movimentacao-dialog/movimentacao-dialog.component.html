@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Nova Movimentação</h2>
+
+<mat-dialog-content>
+
+  <mat-form-field style="width: 100%;">
+    <mat-label>Descrição</mat-label>
+    <input matInput [(ngModel)]="descricao" />
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%;">
+    <mat-label>Valor</mat-label>
+    <input matInput type="number" [(ngModel)]="valor" />
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%;">
+    <mat-label>Data</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="data" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+</mat-dialog-actions>
