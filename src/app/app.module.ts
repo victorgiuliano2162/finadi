@@ -13,6 +13,10 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideNgxMask } from 'ngx-mask';
+import { OnlyNumbersDirective } from './directive/only-numbers.directive';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ToolBarComponent,
     SidenavComponent,
     LoginPageComponent,
-    RegisterComponent
+    RegisterComponent,
+    OnlyNumbersDirective,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    provideNgxMask()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
