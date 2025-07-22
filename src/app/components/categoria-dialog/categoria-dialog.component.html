@@ -1,0 +1,20 @@
+<h2 mat-dialog-title style="text-align: center;">Criar nova categoria</h2>
+
+<mat-dialog-content>
+
+  <mat-form-field style="width: 100%;">
+    <mat-label>Nome</mat-label>
+    <input matInput [(ngModel)]="nome" />
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%;">
+    <mat-label>Descrição</mat-label>
+    <textarea matInput rows="3" [(ngModel)]="descricao"></textarea>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+</mat-dialog-actions>
