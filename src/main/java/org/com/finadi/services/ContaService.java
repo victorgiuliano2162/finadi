@@ -45,7 +45,7 @@ public class ContaService {
   public Conta criarNovaConta(String userID, Conta conta)  {
 
     Usuario userConta = usuarioService.findUserById(userID);
-    Conta contaCriada = new Conta(conta.getName(), conta.getSaldo(), userConta, conta.getDataCriacao());
+    Conta contaCriada = new Conta(conta.getName(), conta.getBanco(), conta.getSaldo(), userConta, conta.getDataCriacao());
     return contaRepository.save(contaCriada);
   }
 
