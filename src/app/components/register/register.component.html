@@ -1,54 +1,56 @@
-<!-- O formulário principal que engloba tudo. O ngSubmit só é necessário aqui. -->
- <mat-card>
+<div class="register">
+  <mat-card>
+    <mat-card-header style="justify-content: center;">
+    <mat-card-title>Cadastro de usuário</mat-card-title>
+    <mat-card-subtitle>Login</mat-card-subtitle>
+  </mat-card-header>
+  <form #form="ngForm" (ngSubmit)="submitUserForm(form)">
 
-   <form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
-     
-  <mat-stepper orientation="vertical" #stepper>
-    
-    <!-- 1º Passo -->
-    <!-- [stepControl] usa o getter do componente para verificar a validade do passo -->
-    <mat-step [stepControl]="dadosPessoais">
-      <!-- ERRO CORRIGIDO: Removido <form> aninhado e usado <div formGroupName> -->
-      <div formGroupName="dadosPessoais">
-        <ng-template matStepLabel>Preencha seu nome</ng-template>
-        <mat-form-field>
-          <mat-label>Nome</mat-label>
-          <input matInput placeholder="Sobrenome, Nome" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Próximo</button>
-        </div>
-      </div>
-    </mat-step>
+    <mat-card-content>
+      <mat-form-field style="width: 70%;">
+        <mat-label>CPF</mat-label>
+        <input matInput [(ngModel)]="subscribeUserFrom.cpf" required
+        name="cpf"
+       type="text"
+       placeholder="000.000.000-00"
+       maxLength="11"
+       minlength="11"
+       onlyNumbers>
+      </mat-form-field>
 
-    <!-- 2º Passo -->
-    <mat-step [stepControl]="informacoesContato">
-      <!-- ERRO CORRIGIDO: Removido <form> aninhado e usado <div formGroupName> -->
-      <div formGroupName="informacoesContato">
-        <ng-template matStepLabel>Preencha seu endereço</ng-template>
-        <mat-form-field>
-          <mat-label>Endereço</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. Av. Paulista, 1000" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Voltar</button>
-          <button mat-button matStepperNext>Próximo</button>
-        </div>
-      </div>
-    </mat-step>
+      <mat-form-field style="width: 70%;">
+        <mat-label>Nome completo</mat-label>
+        <input matInput [(ngModel)]="subscribeUserFrom.name" name="name" type="text" required>
+      </mat-form-field>
 
-    <!-- 3º Passo (Final) -->
-    <mat-step>
-      <ng-template matStepLabel>Finalizado</ng-template>
-      <p>Você completou o cadastro.</p>
-      <div>
-        <button mat-button matStepperPrevious>Voltar</button>
-        <button mat-button (click)="stepper.reset()">Resetar</button>
-        <!-- O botão de submissão final deve ser do tipo "submit" -->
-        <button mat-raised-button color="primary" type="submit">Enviar Cadastro</button>
-      </div>
-    </mat-step>
+      <mat-form-field style="width: 70%;">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="subscribeUserFrom.email" name="email" type="text" required
+        pattern="[a-z0-9!#$%&'*+/?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+      </mat-form-field>
 
-  </mat-stepper>
-</form>
-</mat-card>
+      <mat-form-field style="width: 70%;">
+        <mat-label>Senha</mat-label>
+        <input matInput [(ngModel)]="subscribeUserFrom.password" name="password" type="password" required minlength="6"
+        #passwordInput="ngModel">
+      </mat-form-field>
+
+        <mat-form-field style="width: 70%;">
+        <mat-label>Repita a senha</mat-label>
+        <input matInput  name="password" type="password" required minlength="6"
+        #passwordInputValidator>
+      </mat-form-field>
+      <mat-error *ngIf="passwordInput.errors?.['minlength'] && passwordInput.touched">A senha deve ter no mínimo 6 caracteres.</mat-error>
+      
+      <mat-error *ngIf="passwordInput.value !== passwordInputValidator.value">As senhas não coincidem.</mat-error>
+      
+    </mat-card-content>
+
+    <mat-card-footer>
+      <mat-card-actions style="justify-content: center;" class="button-row">
+        <button mat-stroked-button color="primary" type="submit">Cadastrar</button>
+      </mat-card-actions>
+    </mat-card-footer>
+      </form>
+  </mat-card>
+</div>
