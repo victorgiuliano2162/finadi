@@ -42,10 +42,10 @@ public class ContaService {
 
 
   @Transactional
-  public Conta criarNovaConta(String userID, Conta conta) {
+  public Conta criarNovaConta(String userID, Conta conta)  {
 
     Usuario userConta = usuarioService.findUserById(userID);
-    Conta contaCriada = new Conta(conta.getSaldo(), userConta, conta.getDataCriacao());
+    Conta contaCriada = new Conta(conta.getName(), conta.getSaldo(), userConta, conta.getDataCriacao());
     return contaRepository.save(contaCriada);
   }
 

@@ -23,7 +23,7 @@ public class ContaController {
 
   @PostMapping("/{userID}/account")
   public ResponseEntity<Conta> salvarConta(@PathVariable String userID,
-                                           @RequestBody Conta conta){
+                                           @RequestBody Conta conta) {
 
     Conta contaCriada = contaService.criarNovaConta(userID, conta);
     return ResponseEntity.ok(contaCriada);

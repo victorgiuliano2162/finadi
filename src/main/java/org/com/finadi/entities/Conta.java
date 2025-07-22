@@ -17,6 +17,9 @@ public class Conta {
   @Getter
   private String id;
 
+  @Getter @Setter
+  private String name;
+
   @Getter
   private BigDecimal saldo =  BigDecimal.ZERO;
 
@@ -31,7 +34,8 @@ public class Conta {
 
   public Conta() {}
 
-  public Conta(BigDecimal saldo, Usuario usuario, LocalDateTime dataCriacao) {
+  public Conta(String name, BigDecimal saldo, Usuario usuario, LocalDateTime dataCriacao) {
+    this.name = name;
     this.saldo = saldo;
     this.dataCriacao = dataCriacao;
     this.usuario = usuario;
