@@ -29,7 +29,11 @@ public class ContaController {
     return ResponseEntity.ok(contaCriada);
   }
 
-
+  @PostMapping("account")
+  public ResponseEntity<Conta> salvarConta(@RequestBody Conta conta) {
+    Conta criada = contaService.criarNovaConta(conta.getUsuario().getId(), conta);
+    return ResponseEntity.ok(criada);
+  }
 
   @DeleteMapping("/{userID}/account/{contaID}")
   public ResponseEntity<Void> deletarConta(@PathVariable("userID") String userID,
@@ -40,10 +44,9 @@ public class ContaController {
   }
 
 
-  @GetMapping("/{userID}/account/{contaID}")
-  public ResponseEntity<Conta> getContaUsuario(@PathVariable("userID") String userID,
-                                            @PathVariable("contaID") String contaID){
-     Conta c = contaService.findById(contaID);
+  @GetMapping("/account/{contaID}")
+  public ResponseEntity<Conta> getContaUsuario(@PathVariable("contaID") String contaID){
+    Conta c = contaService.findById(contaID);
     return ResponseEntity.ok(c);
   }
 
